@@ -35,7 +35,7 @@ class Api(object):
 	# https://www.namecheap.com/support/api/methods/domains/create.aspx
 	def domains_create(self, DomainName, FirstName, LastName,
 		Address1, City, StateProvince, PostalCode, Country, Phone,
-		EmailAddress, Address2 = None, years = 1):
+		EmailAddress, Address2=None, years=1, whois_guard='yes'):
 		"""
 		Registers a domain name with the given contact info.
 		Example of a working phone number: +81.123123123
@@ -45,8 +45,10 @@ class Api(object):
 		contact_types = ['Registrant', 'Tech', 'Admin', 'AuxBilling']
 
 		extra_payload = {
-			'DomainName' : DomainName,
-			'years' : years
+			'DomainName': DomainName,
+			'years': years,
+			'AddFreeWhoisguard': whois_guard,
+			'WGEnabled': whois_guard,
 		}
 
 		for contact_type in contact_types:
